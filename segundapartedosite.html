@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Educa Pontos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #1c1c28;
+            color: #ffffff;
+        }
+
+        /* Barra Lateral */
+        .sidebar {
+            width: 220px;
+            background-color: #5e33f7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .sidebar .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .sidebar .logo span {
+            color: #e5e3eb;
+            display: block;
+        }
+
+        .sidebar .tagline {
+            font-size: 14px;
+            color: #e0e0e0;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .sidebar a {
+            width: 100%;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 16px;
+            text-align: left;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #7a52f4;
+        }
+
+        /* Estilos do Botão */
+        .sidebar .button {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: #ff4b4b; /* Cor vermelha para o botão */
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar .button:hover {
+            background-color: #ff6b6b; /* Cor mais clara ao passar o mouse */
+        }
+
+        /* Área Principal */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            background-color: #1c1c28;
+        }
+
+        .welcome-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .welcome-section img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #3e3e50; /* Placeholder color for the avatar */
+        }
+
+        .welcome-text {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .welcome-text small {
+            display: block;
+            font-size: 14px;
+            color: #a0a0a0;
+            margin-top: 2px;
+        }
+    </style>
+    <script>
+        // Função para sair da plataforma
+        function logout() {
+            // Redireciona para a página de login ou home
+            window.location.href = 'login.html'; // Altere para o caminho da sua página de login
+        }
+    </script>
+</head>
+<body>
+    <!-- Barra Lateral -->
+    <div class="sidebar">
+        <div class="logo">
+            Projeto <span>Educa Pontos</span>
+        </div>        
+        <a href="#">Suas atividades</a>
+        <a href="#">Seus pontos</a>
+        
+        <!-- Botão Sair -->
+        <button class="button" onclick="logout()">Sair</button>
+    </div>
+
+    <!-- Área Principal -->
+    <div class="main-content">
+        <div class="welcome-section">
+            <img src="images.png" alt="Avatar do usuário">
+            <div class="welcome-text">
+                BEM-VINDO<br>
+                <small>Aluno</small>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

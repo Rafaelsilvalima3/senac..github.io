@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #1c1c28;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: #2b2b3b;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .container h1 {
+            font-size: 24px;
+            color: #00A3FF;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #1c1c28;
+            color: #fff;
+        }
+
+        .form-group input::placeholder {
+            color: #888;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .button {
+            width: 48%;
+            padding: 10px;
+            background-color: #5e33f7;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #7a52f4;
+        }
+
+        a.button {
+            display: inline-block;
+            width: 48%;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        a.button:hover {
+            background-color: #444;
+        }
+
+        .user-list {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 400px;
+            background-color: #2b2b3b;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .user-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .user-list li {
+            background-color: #333;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-list button {
+            background-color: #f44336;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .user-list button:hover {
+            background-color: #d32f2f;
+        }
+
+        .user-list button.edit {
+            background-color: #4caf50;
+        }
+
+        .user-list button.edit:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Usuário</h1>
+
+        <!-- Formulário para cadastro -->
+        <form id="cadastroForm">
+            <div class="form-group">
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+            </div>
+
+            <div class="form-group">
+                <label for="perfil">Selecione o Perfil</label>
+                <select id="perfil" name="perfil" required>
+                    <option value="">Escolha um perfil</option>
+                    <option value="administrador">Administrador</option>
+                    <option value="aluno">Aluno</option>
+                    <option value="professor">Professor</option>
+                    <option value="escolar">Escolar</option>
+                </select>
+            </div>
+
+            <div class="buttons">
+                <button type="submit" class="button">Cadastrar</button>
+                <a href="Primeirapartedositesenac.html" class="button">Voltar para a Página Principal</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Lista de usuários cadastrados -->
+    <div class="user-list">
+        <h2>Usuários Cadastrados</h2>
+        <ul id="userList"></ul>
+    </div>
+
+    <script>
+        // Função para armazenar e exibir os dados no localStorage
+        document.getElementById("cadastroForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evitar o envio do formulário
+
+            const nome = document.getElementById("nome").value;
+            const email = document.getElementById("email").value;
+            const senha = document.getElementById("senha").value;
+            const perfil = document.getElementById("perfil").value;
+
+            if (nome && email && senha && perfil) {
+                const usuario = { nome, email, senha, perfil };
+
+                // Recupera usuários cadastrados no localStorage
+                let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+                // Adiciona o novo usuário
+                usuarios.push(usuario);
+
+                // Armazena os dados no localStorage
+                localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+                // Atualiza a lista de usuários
+                exibirUsuarios();
+                document.getElementById("cadastroForm").reset();
+            }
+        });
+
+        // Função para exibir os usuários cadastrados
+        function exibirUsuarios() {
+            const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+            const userList = document.getElementById("userList");
+
+            userList.innerHTML = ""; // Limpa a lista atual
+
+            usuarios.forEach((usuario, index) => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <span>${usuario.nome} (${usuario.perfil})</span>
+                    <div>
+                        <button class="edit" onclick="editarUsuario(${index})">Editar</button>
+                        <button onclick="excluirUsuario(${index})">Excluir</button>
+                    </div>
+                `;
+                userList.appendChild(li);
+            });
+        }
+
+        // Função para editar usuário
+        function editarUsuario(index) {
+            const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+            const usuario = usuarios[index];
+
+            document.getElementById("nome").value = usuario.nome;
+            document.getElementById("email").value = usuario.email;
+            document.getElementById("senha").value = usuario.senha;
+            document.getElementById("perfil").value = usuario.perfil;
+
+            // Remove o usuário da lista antes de editar
+            usuarios.splice(index, 1);
+            localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+            // Atualiza a lista de usuários
+            exibirUsuarios();
+        }
+
+        // Função para excluir usuário
+        function excluirUsuario(index) {
+            const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+            usuarios.splice(index, 1);
+
+            // Atualiza os dados no localStorage
+            localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+            // Atualiza a lista de usuários
+            exibirUsuarios();
+        }
+
+        // Exibe a lista de usuários ao carregar a página
+        window.onload = exibirUsuarios;
+    </script>
+</body>
+</html>
+
+
+
+
