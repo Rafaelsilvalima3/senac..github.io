@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Educa Pontos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #1c1c28;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            max-width: 800px;
+            background-color: #1c1c28;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            flex-direction: row; /* Garantir que o conteúdo será lado a lado */
+        }
+
+        .form-container {
+            width: 60%; /* Ajusta a largura do formulário */
+            margin-right: 20px; /* Espaçamento entre o formulário e a imagem */
+        }
+
+        .form-container h1 {
+            font-size: 24px;
+            color: #00A3FF;
+            text-align: left;
+            margin-bottom: 10px; /* Menor margem inferior para aproximar o título do texto */
+            margin-top: -20px; /* Movendo o título um pouco para cima */
+        }
+
+        .form-container p {
+            font-size: 14px;
+            color: #cccccc;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #2b2b3b;
+            color: #fff;
+        }
+
+        .form-group input::placeholder {
+            color: #888;
+        }
+
+        .button {
+            width: 100%;
+            padding: 10px;
+            background-color: #5e33f7;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #7a52f4;
+        }
+
+        .image-container {
+            width: 40%; /* Ajusta a largura da imagem */
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .sobre-nos {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .sobre-nos h2 {
+            display: inline-block;
+            padding-bottom: 5px;
+            border-bottom: 3px solid #5e33f7; /* Borda embaixo do texto */
+        }
+
+        /* Estilos do Rodapé */
+        footer {
+            background-color: #2b2b3b;
+            width: 100%;
+            padding: 15px 0;
+            text-align: center;
+            color: #cccccc;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+
+        footer p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #00A3FF;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Projeto Educa Pontos</h1>
+            <p>Colecione pontos, suba de nível e troque por recompensas incríveis!</p>
+            
+            <div class="form-group">
+                <input type="text" placeholder="Nome da instituição">
+            </div>
+
+            <div class="form-group">
+                <input type="text" placeholder="Nome do aluno">
+            </div>
+
+            <div class="form-group">
+                <input type="email" placeholder="Email de instituto">
+            </div>
+
+            <button class="button" onclick="redirecionar()">Entra na Plataforma</button>
+
+            <script>
+                function redirecionar() {
+                    window.location.href = "segundapartedosite.html"; // Substitua 'segunda_pagina.html' pela URL desejada
+                }
+            </script>
+        </div>
+
+        <div class="image-container">
+            <img src="image_no_background.png" alt="Imagem ilustrativa">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Projeto Educa Pontos. Todos os direitos reservados ao SENAC -PI.</p>
+        <p>Desenvolvido por Grupo de alunos do SENAC _PI.</p>
+    </footer>
+</body>
+</html>
